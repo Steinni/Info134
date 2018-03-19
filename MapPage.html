@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/demo.css">
     <script type="text/javascript" src="js/demo.js"></script>
   </head>
-  <body onload="initialize();">
+  <body onload="initialize(); toalettListe();">
     <!-- Header start -->
     <div id="header" class="container">
     <img alt="Image would not load" class="cover-img" src="img/Bryggen1.jpg">
@@ -18,15 +18,27 @@
     <div class="topnav">
      <a href="index.html">Forside</a>
      <a href="NightlifePage.html">Utesteder</a>
-     <a class="active" href="MapPage.html">Kart</a>
+     <a class="active" href="MapPage.html">Toaletter</a>
    </div>
     <!-- NavBar end -->
 
     <!-- Page content start -->
-    <h3>My Google Maps Demo</h3>
-    <div class="container" id="map"></div>
+    <div id="google">
+      <div id="google2">
+
+
+
+  <div class="header">
+
+
+    <h3>Liste over toaletter i Bergen</h3>
+  </div>
+    <div id="liste"></div>
+      </div>
+    <div id="map"></div>
+    </div>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key= AIzaSyDjM2k_K1AyHUHMTfL_lRaj0gcAG3tHssQ &callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjM2k_K1AyHUHMTfL_lRaj0gcAG3tHssQ&callback=initMap">
     </script>
     <!-- Page content end -->
 

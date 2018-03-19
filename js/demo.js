@@ -4,46 +4,10 @@ console.log("Hello");
 }
 // write to console end
 
-//Google Map start
-function initialize() {
-   var locations = [
-     ['Bryggen ' + 'https://www.visitbergen.com/', 60.397527, 5.322348, 5],
-     ['Nordnes', 60.398757, 5.307241, 4],
-     ['Nøstet', 60.393923, 5.315309, 3],
-     ['Sydnes', 60.38947, 5.318743, 2],
-     ['Festplassen', 60.391294, 5.325352, 1]
-   ];
-
-   var map = new google.maps.Map(document.getElementById('map'), {
-     zoom: 14,
-     center: new google.maps.LatLng(60.395025, 5.325094),
-     mapTypeId: google.maps.MapTypeId.ROADMAP
-   });
-
-   var infowindow = new google.maps.InfoWindow();
-
-   var marker, i;
-
-   for (i = 0; i < locations.length; i++) {
-     marker = new google.maps.Marker({
-       position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-       map: map
-     });
-
-     google.maps.event.addListener(marker, 'click', (function(marker, i) {
-       return function() {
-         infowindow.setContent(locations[i][0]);
-         infowindow.open(map, marker);
-       }
-     })(marker, i));
-   }
-}
-//Google Map end
-
 // Funskjon som innkapsler hele JSON data som et variabel og bruker variabelen til å lage et dynamisk table som henter ut verdier
 // fra JSON og lager table basert på hvor mange verdier den henter ut, og til slutt legger det inn i en container
-function ToalettJsonToTable() {
-        var toaletter = [{
+
+var toaletter = [{
 	"herre": "1",
 	"tid_sondag": "07.00 - 23.15",
 	"pissoir_only": "NULL",
@@ -269,44 +233,49 @@ function ToalettJsonToTable() {
 	"longitude": "5.3132629"
 }]
 
+var markør = []
 
-        //  Henter ut verdier til HTML header
-        // ('herre', 'tid_sondag', 'stellerom', 'pris' osv..)
-        var col = [];
-        for (var i = 0; i < toaletter.length; i++) {
-            for (var key in toaletter[i]) {
-                if (col.indexOf(key) === -1) {
-                    col.push(key);
-                }
-            }
-        }
+function toalettListe(){
+  var liste = document.getElementById("liste");
+  liste.innerHTML ="";
+  var i = 0;
+toaletter.forEach(function(toalett){
+  i++;
+  liste.innerHTML += "<li><a>" + i + ". " + toalett.place + "</a></li>"
+});
+}
 
-        // Lager et table dynamisk
-        var table = document.createElement("table");
+//Google Map start
+function initialize() {
 
-        //  Lager et HTML table header rekke ved å bruke de verdiene som er hentet ut
 
-        var tr = table.insertRow(-1);                   // Table rekke
+   var map = new google.maps.Map(document.getElementById('map'), {
+     zoom: 14,
+     center: new google.maps.LatLng(60.395025, 5.325094),
+     mapTypeId: google.maps.MapTypeId.ROADMAP
+   });
 
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th");      // TABLE header.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
+   var infowindow = new google.maps.InfoWindow();
 
-        //  Legger til JSON data til table som rekker
-        for (var i = 0; i < toaletter.length; i++) {
+   var marker, i;
 
-            tr = table.insertRow(-1);
 
-            for (var j = 0; j < col.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = toaletter[i][col[j]];
-            }
-        }
 
-        //  legger til nylige laget table med JSON data til en container
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    }
+   for (i = 0; i < toaletter.length; i++) {
+     marker = new google.maps.Marker({
+       position: new google.maps.LatLng(toaletter[i].latitude, toaletter[i].longitude),
+       map: map,
+			 label: toaletter[i].id,
+
+
+     });
+
+     google.maps.event.addListener(marker, 'click', (function(marker, i) {
+       return function() {
+         infowindow.setContent(toaletter[i].id + ". " +toaletter[i].place);
+         infowindow.open(map, marker);
+       }
+     })(marker, i));
+   }
+}
+//Google Map end

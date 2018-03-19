@@ -4,9 +4,7 @@ console.log("Hello");
 }
 // write to console end
 
-// Funskjon som innkapsler hele JSON data som et variabel og bruker variabelen til å lage et dynamisk table som henter ut verdier
-// fra JSON og lager table basert på hvor mange verdier den henter ut, og til slutt legger det inn i en container
-
+// innkapsler JSON data som en variabel
 var toaletter = [{
 	"herre": "1",
 	"tid_sondag": "07.00 - 23.15",
@@ -234,7 +232,7 @@ var toaletter = [{
 }]
 
 
-
+//En funksjon som lager nummerert liste med plassering på toalettene
 function toalettListe(){
   var liste = document.getElementById("liste");
   liste.innerHTML ="";

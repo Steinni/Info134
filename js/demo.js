@@ -233,7 +233,7 @@ var toaletter = [{
 	"longitude": "5.3132629"
 }]
 
-var markør = []
+
 
 function toalettListe(){
   var liste = document.getElementById("liste");

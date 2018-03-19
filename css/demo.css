@@ -78,13 +78,13 @@ text-align:center;
 /* -- Media Query end --*/
 /* -- Google Map start --*/
 
-#google {
+#listebakgrunn {
   display: flex;
   flex-direction: row;
   /* overflow: auto; */
 }
 
-#google2{
+#liste2{
   background: white;
   margin: 10px 20px;
   padding: 30px;

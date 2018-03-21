@@ -277,3 +277,60 @@ function initialize() {
    }
 }
 //Google Map end
+
+
+function søkToalett(){
+	var tekst = document.getElementById("søk").value;
+
+		var toalettListe = document.getElementById("liste");
+		toalettListe.	innerHTML = "";
+
+
+		var regEx = /herre|dame|rullestol|pris|gratis|stellerom|pissoir/g;
+		var resultater = []
+	if(resultater = regEx){
+		if(resultater[0] = "herre"){
+			for (var i = 0; i < toaletter.length; i++){
+				if (toaletter[i].herre != "NULL"){
+					var toalettListe = document.getElementById("liste");
+					toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering  + "</a></li>"
+				}
+			}
+		}
+	else if (resultater[0] = "rullestol") {
+		for (var i = 0; i < toaletter.length; i++){
+			if (toaletter[i].rullestol != "NULL"){
+				var toalettListe = document.getElementById("liste");
+				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering  + "</a></li>"
+			}
+		}
+	}
+	else if (resultater[0] = "pris") {
+		for (var i = 0; i < toaletter.length; i++){
+			if (toaletter[i].pris != "NULL"){
+				var toalettListe = document.getElementById("liste");
+				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering  + "</a></li>"
+			}
+		}
+	}
+	else if (resultater[0] = "gratis") {
+		for (var i = 0; i < toaletter.length; i++){
+			if (toaletter[i].pris == "0"){
+				var toalettListe = document.getElementById("liste");
+				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering + "</a></li>"
+			}
+		}
+	}
+	else if (resultater[0] = "Pissoir") {
+		for (var i = 0; i < toaletter.length; i++){
+			if (toaletter[i].pissoir_only = "NULL"){
+				var toalettListe = document.getElementById("liste");
+				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering + "</a></li>"
+			}
+		}
+	}
+	}
+	if (toalettListe.innerHTML == ""){
+		toalettListe.innerHTML = "Beklager, ingen treff!"
+	}
+	}

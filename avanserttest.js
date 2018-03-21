@@ -26,7 +26,7 @@ var toilet1 = new Toilet("1","NULL","NULL","NULL","60.3884988","05.30 - 23.50","
 var person5 = new Person("John","Luminous",35,"brown");
 
 //Legger toalettene over i en liste.
-var toilets = [toilet0];
+var toilets = [toilet0, toilet1];
 
 
 function search() {

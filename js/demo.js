@@ -258,16 +258,17 @@ function initialize() {
    var marker, i;
 
 
-
+	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
+	 å bruke latitude og longitude keyvalues */
    for (i = 0; i < toaletter.length; i++) {
      marker = new google.maps.Marker({
        position: new google.maps.LatLng(toaletter[i].latitude, toaletter[i].longitude),
        map: map,
-			 label: toaletter[i].id,
+			 label: toaletter[i].id, 			// angir en label på markers med IDn til toalettene
 
 
      });
-
+		 // gjør markers klikkbare og åpner et infovindu på klikk som forteller toalett ID og plassering
      google.maps.event.addListener(marker, 'click', (function(marker, i) {
        return function() {
          infowindow.setContent(toaletter[i].id + ". " +toaletter[i].place);
@@ -278,7 +279,10 @@ function initialize() {
 }
 //Google Map end
 
-
+/*
+	Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
+	skal den filtrere json listen og genererer en ny liste basert på det som er avhuket
+*/
 function checkboxSøk(){
 	var json = toaletter;
 	var liste = document.getElementById("liste");
@@ -302,7 +306,11 @@ function checkboxSøk(){
 	if (document.getElementById("pissoir").checked){
 		json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 	}
+
 	for (var i = 0; i < json.length; i++){
 		liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>"
+	}
+	if (liste.innerHTML == ""){
+		liste.innerHTML = "Beklager, ingen treff";
 	}
 }

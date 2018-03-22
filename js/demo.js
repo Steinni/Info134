@@ -229,7 +229,7 @@ var toaletter = [{
 	"place": "C. SUNDTSGT",
 	"dame": "NULL",
 	"longitude": "5.3132629"
-}]
+}];
 
 
 //En funksjon som lager nummerert liste med plassering på toalettene
@@ -239,7 +239,7 @@ function toalettListe(){
   var i = 0;
 toaletter.forEach(function(toalett){
   i++;
-  liste.innerHTML += "<li><a>" + i + ". " + toalett.place + "</a></li>"
+  liste.innerHTML += "<ul>" + i + ". " + toalett.plassering + "</ul>"
 });
 }
 
@@ -279,58 +279,30 @@ function initialize() {
 //Google Map end
 
 
-function søkToalett(){
-	var tekst = document.getElementById("søk").value;
+function checkboxSøk(){
+	var json = toaletter;
+	var liste = document.getElementById("liste");
+	liste.innerHTML= "";
 
-		var toalettListe = document.getElementById("liste");
-		toalettListe.	innerHTML = "";
-
-
-		var regEx = /herre|dame|rullestol|pris|gratis|stellerom|pissoir/g;
-		var resultater = []
-	if(resultater = regEx){
-		if(resultater[0] = "herre"){
-			for (var i = 0; i < toaletter.length; i++){
-				if (toaletter[i].herre != "NULL"){
-					var toalettListe = document.getElementById("liste");
-					toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering  + "</a></li>"
-				}
-			}
-		}
-	else if (resultater[0] = "rullestol") {
-		for (var i = 0; i < toaletter.length; i++){
-			if (toaletter[i].rullestol != "NULL"){
-				var toalettListe = document.getElementById("liste");
-				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering  + "</a></li>"
-			}
-		}
+	if (document.getElementById("mann").checked){
+		 json = json.filter(toaletter => toaletter.herre != "NULL")
 	}
-	else if (resultater[0] = "pris") {
-		for (var i = 0; i < toaletter.length; i++){
-			if (toaletter[i].pris != "NULL"){
-				var toalettListe = document.getElementById("liste");
-				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering  + "</a></li>"
-			}
-		}
+	if (document.getElementById("gratis").checked){
+		json = json.filter(toaletter => toaletter.pris == "NULL" || toaletter.pris == "0")
 	}
-	else if (resultater[0] = "gratis") {
-		for (var i = 0; i < toaletter.length; i++){
-			if (toaletter[i].pris == "0"){
-				var toalettListe = document.getElementById("liste");
-				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering + "</a></li>"
-			}
-		}
+	if (document.getElementById("dame").checked){
+		json = json.filter(toaletter => toaletter.dame != "NULL")
 	}
-	else if (resultater[0] = "Pissoir") {
-		for (var i = 0; i < toaletter.length; i++){
-			if (toaletter[i].pissoir_only = "NULL"){
-				var toalettListe = document.getElementById("liste");
-				toalettListe.innerHTML += "<li><a>" + (i+1) + ". " + toaletter[i].plassering + "</a></li>"
-			}
-		}
+	if (document.getElementById("stellerom").checked){
+		json = json.filter(toaletter => toaletter.stellerom != "NULL")
 	}
+	if (document.getElementById("rullestol").checked){
+		json = json.filter(toaletter => toaletter.rullestol != "NULL" && toaletter.rullestol != "")
 	}
-	if (toalettListe.innerHTML == ""){
-		toalettListe.innerHTML = "Beklager, ingen treff!"
+	if (document.getElementById("pissoir").checked){
+		json = json.filter(toaletter => toaletter.pissoir_only != "NULL")
 	}
+	for (var i = 0; i < json.length; i++){
+		liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>"
 	}
+}

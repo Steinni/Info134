@@ -232,7 +232,10 @@ var toaletter = [{
 }];
 
 
-//En funksjon som lager nummerert liste med plassering på toalettene
+/*
+En funksjon som lager nummerert liste med plassering på toalettene
+- Steinn-Roar Valberg (SVA038)
+*/
 function toalettListe(){
   var liste = document.getElementById("liste");
   liste.innerHTML ="";
@@ -243,7 +246,7 @@ toaletter.forEach(function(toalett){
 });
 }
 
-//Google Map start
+//Google Map start -Daniel Henstein Olsen (DOL006)
 function initialize() {
 
 
@@ -259,7 +262,8 @@ function initialize() {
 
 
 	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
-	 å bruke latitude og longitude keyvalues */
+	 å bruke latitude og longitude keyvalues
+	 */
    for (i = 0; i < toaletter.length; i++) {
      marker = new google.maps.Marker({
        position: new google.maps.LatLng(toaletter[i].latitude, toaletter[i].longitude),
@@ -282,6 +286,7 @@ function initialize() {
 /*
 	Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
 	skal den filtrere json listen og genererer en ny liste basert på det som er avhuket
+	-Steinn-Roar Valberg (SVA038), Daniel Henstein Olsen (DOL006)
 */
 function checkboxSøk(){
 	var json = toaletter;

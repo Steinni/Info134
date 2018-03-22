@@ -39,11 +39,7 @@ text-align:center;
 
 /* -- Cover photo end -- */
 /* -- Section start -- */
-.section {
-  background-color: #fff;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
+
 }
 
 #header img {
@@ -101,18 +97,7 @@ text-align:center;
 }
 
 /* -- Google Map end --*/
-/* -- Nightlife Content start --*/
-#nightlife1 img {
-  float: right;
-  width: 300px;
-  height: 150;
-}
-#nightlife2 img {
-  float: left;
-  width: 300px;
-  height: 150;
-}
-/* -- Nightlife Content end--*/
+
 
 /* -- FlexBox start --*/
 .container {
@@ -182,5 +167,11 @@ text-align:center;
 
 .indexchild3 {
   order: 3;
+}
+
+@media only screen and (max-width: 600px){
+  .container {
+    flex-wrap: wrap;
+  }
 }
 /* -- FlexBox end --*/

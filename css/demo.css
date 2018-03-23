@@ -77,10 +77,10 @@ text-align:center;
 #listebakgrunn {
   display: flex;
   flex-direction: row;
-  /* overflow: auto; */
+
 }
 
-#liste2{
+#listebakgrunn2{
   background: white;
   margin: 10px 20px;
   padding: 30px;
@@ -97,6 +97,66 @@ text-align:center;
 }
 
 /* -- Google Map end --*/
+* {
+  box-sizing: border-box;
+}
+div.søkstyle input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 250px;
+  background: #f1f1f1;
+}
+
+div.søkstyle button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #0e2f44;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+div.søkstyle button:hover {
+  background: #0b7dda;
+}
+div.søkstyle::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#checkbox{
+  display: none;
+  margin: 20px;
+}
+
+.avansertknapp {
+  width: 25%;
+  padding: 10px;
+  background: #0e2f44;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+.checkboxKnapp {
+
+  background: #0e2f44;
+  color: white;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+div.søkstyle2 button:hover {
+  background: #0b7dda;
+}
 
 
 /* -- FlexBox start --*/

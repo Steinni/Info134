@@ -236,15 +236,7 @@ var toaletter = [{
 En funksjon som lager nummerert liste med plassering på toalettene
 - Steinn-Roar Valberg (SVA038)
 */
-function toalettListe(){
-  var liste = document.getElementById("liste");
-  liste.innerHTML ="";
-  var i = 0;
-toaletter.forEach(function(toalett){
-  i++;
-  liste.innerHTML += "<ul>" + i + ". " + toalett.plassering + "</ul>"
-});
-}
+
 
 //Google Map start -Daniel Henstein Olsen (DOL006)
 function initialize() {
@@ -253,35 +245,59 @@ function initialize() {
    var map = new google.maps.Map(document.getElementById('map'), {
      zoom: 14,
      center: new google.maps.LatLng(60.395025, 5.325094),
-     mapTypeId: google.maps.MapTypeId.ROADMAP
+     markers: []
    });
 
-   var infowindow = new google.maps.InfoWindow();
-
-   var marker, i;
 
 
-	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
-	 å bruke latitude og longitude keyvalues
-	 */
-   for (i = 0; i < toaletter.length; i++) {
-     marker = new google.maps.Marker({
-       position: new google.maps.LatLng(toaletter[i].latitude, toaletter[i].longitude),
-       map: map,
-			 label: toaletter[i].id, 			// angir en label på markers med IDn til toalettene
 
 
-     });
-		 // gjør markers klikkbare og åpner et infovindu på klikk som forteller toalett ID og plassering
-     google.maps.event.addListener(marker, 'click', (function(marker, i) {
-       return function() {
-         infowindow.setContent(toaletter[i].id + ". " +toaletter[i].place);
-         infowindow.open(map, marker);
-       }
-     })(marker, i));
-   }
-}
+
+	 	 /* søker igjennom json listen og henter ut posisjonen til toalettene ved
+	 	 å bruke latitude og longitude keyvalues
+	 	 */
+	    for (var i = 0; i < toaletter.length; i++) {
+	      var marker = new google.maps.Marker({
+	        position: {lat: parseFloat(toaletter[i].latitude), lng: parseFloat(toaletter[i].longitude)},
+	        map: map,
+	 			 	label: toaletter[i].id, 			// angir en label på markers med IDn til toalettene
+
+
+	      });
+
+	 		 // gjør markers klikkbare og åpner et infovindu på klikk som forteller toalett ID og plassering
+	 		 var infowindow = new google.maps.InfoWindow();
+	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent(toaletter[i].id + ". " + toaletter[i].plassering);
+	          infowindow.open(map, marker);
+	        }
+	      })(marker, i));
+	    }
+
+	 }
+
+
 //Google Map end
+
+
+function toalettListe(){
+  var liste = document.getElementById("liste");
+  liste.innerHTML ="";
+for (var i = 0; i < toaletter.length; i++){
+  liste.innerHTML += "<ul>" + (i+1) + ". " + toaletter[i].plassering + "</ul>"
+}
+
+}
+function checkboxToggle(){
+	var liste = document.getElementById("checkbox");
+	if (liste.style.display === "none"){
+		liste.style.display = "flex";
+	}
+	else {
+		liste.style.display = "none";
+	}
+}
 
 /*
 	Funksjonen søker igjennom json variabelen og sjekker om et checkbox er avhuket,
@@ -314,8 +330,12 @@ function checkboxSøk(){
 
 	for (var i = 0; i < json.length; i++){
 		liste.innerHTML += "<ul>" + (i+1) + ". " + json[i].plassering + "</ul>"
+
+
 	}
+
 	if (liste.innerHTML == ""){
 		liste.innerHTML = "Beklager, ingen treff";
 	}
+
 }
